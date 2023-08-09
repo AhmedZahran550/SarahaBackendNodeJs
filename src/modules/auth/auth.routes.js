@@ -10,7 +10,7 @@ const router = Router();
 // router.get("/" , (req,res,next)=>{ next(new Error("check Errors "))})
 router.post("/signUp", validation(validators.singUp), controller.signUp);
 router.get("/verify/:token", controller.verifyEmail);
-router.patch("/login", validation(validators.login), controller.login);
+router.post("/login", validation(validators.login), controller.login);
 
 router.patch("/logout", authToken, controller.logOut);
 

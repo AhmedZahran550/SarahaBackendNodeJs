@@ -51,7 +51,7 @@ export const login = asyncHandler(async (req, res, next) => {
       const token = getToken({ payload: { email, id: user._id }, secretKey: process.env.VERIFY_TOKEN_KEY });
       const url = `${req.protocol}://${req.headers.host}/auth/verify/${token}`;
       const response = await sendEmail(email, "verifyEmail", `<a href=${url}>Click here to verify </a>`);
-      return res.status(201).json({ message: 'Verify Email first look up your email ' });
+      return next(new Error("your Email is not verified pls verify first"))
    }
    const matched = compereHash({ plainText: password, hashedText: user.password });
    if (!matched) {
@@ -68,7 +68,7 @@ export const login = asyncHandler(async (req, res, next) => {
 export const logOut = asyncHandler(async(req,res,next)=>{
    const {_id} = req.user ;
    const loggedOut = await userModel.updateOne({_id},{active:false}) ;
-   return res.json({message:"done", loggedOut});
+   return res.json({message:"done"});
 })
  
 

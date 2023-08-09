@@ -6,7 +6,7 @@ const schema =new  Schema({
         type:String,
         require:true,
     },
-    receiver:{
+    userId:{
         type:Types.ObjectId,
         ref:"User",
         require:true

@@ -8,8 +8,8 @@ import authToken from './../../middleware/auth.js';
 
 const router = Router()
 
-router.get("/getMessages",authToken, controller.getMessages);
-router.post("/send",validation(validators.addMessage) , controller.addMessage);
+router.get("/",authToken, controller.getMessages);
+router.post("/:userId/send",validation(validators.addMessage) , controller.addMessage);
 router.delete("/:id/delete",authToken,validation(validators.deleteMessage) , controller.deleteMessage);
 
 

@@ -10,7 +10,10 @@ connectDB()
 app.use(express.json({}));
 app.get('/', (req, res) => res.send('Hello World!'))
 app.use("/auth" , authRouter);
-app.use("/message" , messageRouter);
+app.use("/messages" , messageRouter);
+app.use("*" , (req,res,next)=>{
+  return next(new Error("Not Found ",{cause:404}))
+});
 
 
 app.use(globalErrorHandler)
